@@ -1,6 +1,7 @@
 class RoutesController < ApplicationController
   def index
-    @routes = Route.page(params[:page]).per(10)
+    @q = Route.ransack(params[:q])
+    @routes = @q.result(:distinct => true).includes(:flights).page(params[:page]).per(10)
 
     render("routes/index.html.erb")
   end
