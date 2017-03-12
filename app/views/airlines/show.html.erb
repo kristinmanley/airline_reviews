@@ -23,3 +23,34 @@
     </div>
   </div>
 </div>
+
+<!-- A Airline has many flights -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-info">
+        Flights
+      </li>
+
+      <% @airline.flights.each do |flight| %>
+        <li class="list-group-item">
+          <a href="/flights/<%= flight.id %>">
+            <%= flight.departure_airport %>
+          </a>
+          <div class="btn-group btn-group-xs pull-right">
+            <a href="/flights/<%= flight.id %>" class="btn btn-primary">
+              <i class="fa fa-search-plus"></i>
+            </a>
+            <a href="/flights/<%= flight.id %>/edit" class="btn btn-warning">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="/delete_flight/<%= flight.id %>" class="btn btn-danger" rel="nofollow">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
