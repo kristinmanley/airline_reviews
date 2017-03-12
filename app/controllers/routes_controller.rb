@@ -6,6 +6,7 @@ class RoutesController < ApplicationController
   end
 
   def show
+    @flight = Flight.new
     @route = Route.find(params[:id])
 
     render("routes/show.html.erb")
