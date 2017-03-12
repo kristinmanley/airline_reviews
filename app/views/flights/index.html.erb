@@ -22,7 +22,7 @@
         <td><%= flight.departure_airport %></td>
         <td><%= flight.destination_airport %></td>
         <td><%= flight.flight_name %></td>
-        <td><%= flight.airline_id %></td>
+        <td><%= flight.airline.airline_name %></td>
         <td><%= flight.route_id %></td>
         <td>
           <a href="/flights/<%= flight.id %>" class="btn btn-primary">Show</a>
