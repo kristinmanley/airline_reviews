@@ -24,7 +24,7 @@
           Flight
         </label>
 
-        <input type="text" id="flight_id" name="flight_id" placeholder="Flight" class="form-control" value="<%= @review.flight_id %>">
+        <%= select_tag(:flight_id, options_from_collection_for_select(Flight.all, :id, :departure_airport, @review.flight_id), :class => "form-control") %>
       </div>
 
       <!-- Label and input for body -->
