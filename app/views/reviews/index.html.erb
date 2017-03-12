@@ -16,7 +16,7 @@
 
       <% @reviews.each do |review| %>
       <tr>
-        <td><%= review.flight_id %></td>
+        <td><%= review.flight.departure_airport %></td>
         <td><%= review.body %></td>
         <td>
           <a href="/reviews/<%= review.id %>" class="btn btn-primary">Show</a>
