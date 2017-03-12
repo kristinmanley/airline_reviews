@@ -1,0 +1,73 @@
+<!-- Validation failure messages -->
+<% if @flight.errors.any? %>
+  <% @flight.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Add Flight</h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/create_flight" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for departure_airport -->
+      <div class="form-group">
+        <label for="departure_airport" class="control-label">
+          Departure airport
+        </label>
+
+        <input type="text" id="departure_airport" name="departure_airport" placeholder="Departure airport" class="form-control" value="<%= @flight.departure_airport %>">
+      </div>
+
+      <!-- Label and input for destination_airport -->
+      <div class="form-group">
+        <label for="destination_airport" class="control-label">
+          Destination airport
+        </label>
+
+        <input type="text" id="destination_airport" name="destination_airport" placeholder="Destination airport" class="form-control" value="<%= @flight.destination_airport %>">
+      </div>
+
+      <!-- Label and input for flight_name -->
+      <div class="form-group">
+        <label for="flight_name" class="control-label">
+          Flight name
+        </label>
+
+        <input type="text" id="flight_name" name="flight_name" placeholder="Flight name" class="form-control" value="<%= @flight.flight_name %>">
+      </div>
+
+      <!-- Label and input for airline_id -->
+      <div class="form-group">
+        <label for="airline_id" class="control-label">
+          Airline
+        </label>
+
+        <input type="text" id="airline_id" name="airline_id" placeholder="Airline" class="form-control" value="<%= @flight.airline_id %>">
+      </div>
+
+      <!-- Label and input for route_id -->
+      <div class="form-group">
+        <label for="route_id" class="control-label">
+          Route
+        </label>
+
+        <input type="text" id="route_id" name="route_id" placeholder="Route" class="form-control" value="<%= @flight.route_id %>">
+      </div>
+
+      <button class="btn btn-success">
+        Create Flight
+      </button>
+      or
+      <a href="/flights">Cancel</a>
+    </form>
+  </div>
+</div>
