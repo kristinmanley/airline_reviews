@@ -15,10 +15,22 @@
       <dd><%= @flight.flight_name %></dd>
 
       <dt>Airline</dt>
-      <dd><%= @flight.airline_id %></dd>
+      <dd>
+        <% if @flight.airline.present? %>
+          <a href="/airlines/<%= @flight.airline_id %>">
+            <%= @flight.airline.airline_name %>
+          </a>
+        <% end %>
+      </dd>
 
       <dt>Route</dt>
-      <dd><%= @flight.route_id %></dd>
+      <dd>
+        <% if @flight.route.present? %>
+          <a href="/routes/<%= @flight.route_id %>">
+            <%= @flight.route.departure_airport %>
+          </a>
+        <% end %>
+      </dd>
 
     </dl>
 
