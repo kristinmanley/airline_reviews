@@ -1,4 +1,21 @@
 Rails.application.routes.draw do
+  # Routes for the Airline resource:
+  # CREATE
+  get "/airlines/new", :controller => "airlines", :action => "new"
+  post "/create_airline", :controller => "airlines", :action => "create"
+
+  # READ
+  get "/airlines", :controller => "airlines", :action => "index"
+  get "/airlines/:id", :controller => "airlines", :action => "show"
+
+  # UPDATE
+  get "/airlines/:id/edit", :controller => "airlines", :action => "edit"
+  post "/update_airline/:id", :controller => "airlines", :action => "update"
+
+  # DELETE
+  get "/delete_airline/:id", :controller => "airlines", :action => "destroy"
+  #------------------------------
+
   # Routes for the Flight resource:
   # CREATE
   get "/flights/new", :controller => "flights", :action => "new"
