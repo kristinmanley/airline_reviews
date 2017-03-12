@@ -51,7 +51,7 @@
           Airline
         </label>
 
-        <input type="text" id="airline_id" name="airline_id" placeholder="Airline" class="form-control" value="<%= @flight.airline_id %>">
+        <%= select_tag(:airline_id, options_from_collection_for_select(Airline.all, :id, :airline_name, @flight.airline_id), :class => "form-control") %>
       </div>
 
       <!-- Label and input for route_id -->
