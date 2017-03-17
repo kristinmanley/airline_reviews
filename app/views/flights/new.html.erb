@@ -10,6 +10,7 @@
 
 <div class="page-header">
   <h3>Add Flight</h3>
+  <h4> Dont see a Route or Airline that you are interested in? Add them here: <a href="/airlines/new" class="btn btn-lg btn-success">New Airline </a> <a href="/routes/new" class="btn btn-lg btn-success">New Route</a></h4>
 </div>
 
 <div class="row">
@@ -19,30 +20,46 @@
       <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
 
       <!-- Label and input for departure_airport -->
-      <div class="form-group">
+      <!-- <div class="form-group">
         <label for="departure_airport" class="control-label">
           Departure airport
         </label>
 
         <input type="text" id="departure_airport" name="departure_airport" placeholder="Departure airport" class="form-control" value="<%= @flight.departure_airport %>">
-      </div>
+      </div> -->
 
       <!-- Label and input for destination_airport -->
-      <div class="form-group">
+      <!-- <div class="form-group">
         <label for="destination_airport" class="control-label">
           Destination airport
         </label>
 
         <input type="text" id="destination_airport" name="destination_airport" placeholder="Destination airport" class="form-control" value="<%= @flight.destination_airport %>">
-      </div>
+      </div> -->
 
       <!-- Label and input for flight_name -->
-      <div class="form-group">
+      <!-- <div class="form-group">
         <label for="flight_name" class="control-label">
           Flight name
         </label>
 
         <input type="text" id="flight_name" name="flight_name" placeholder="Flight name" class="form-control" value="<%= @flight.flight_name %>">
+      </div> -->
+
+      <!-- Label and input for ROUTE_NAME -->
+      <!-- <div class="form-group">
+        <label for="route_name" class="control-label">
+          Route Name
+        </label>
+
+
+          <!-- Label and input for ROUTE NAME -->
+      <div class="form-group">
+        <label for="route_id" class="control-label">
+          Route
+        </label>
+
+        <%= select_tag(:route_id, options_from_collection_for_select(Route.all, :id, :route_name, @flight.route_id), :class => "form-control") %>
       </div>
 
       <!-- Label and input for airline_id -->
@@ -54,18 +71,14 @@
         <%= select_tag(:airline_id, options_from_collection_for_select(Airline.all, :id, :airline_name, @flight.airline_id), :class => "form-control") %>
       </div>
 
-      <!-- Label and input for route_id -->
       <div class="form-group">
-        <label for="route_id" class="control-label">
-          Route
-        </label>
-
-        <%= select_tag(:route_id, options_from_collection_for_select(Route.all, :id, :departure_airport, @flight.route_id), :class => "form-control") %>
+        <label for="comment">Review:</label>
+        <textarea class="form-control" rows="5" id="comment" name ="flight_name"> </textarea>
       </div>
 
-      <button class="btn btn-success">
-        Create Flight
-      </button>
+
+
+<button class="btn btn-success">Create Flight</button>
       or
       <a href="/flights">Cancel</a>
     </form>

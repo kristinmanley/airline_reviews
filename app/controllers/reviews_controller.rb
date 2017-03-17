@@ -14,13 +14,15 @@ class ReviewsController < ApplicationController
 
   def new
     @review = Review.new
+    @flight = Flight.new
+    @route = Route.new
 
     render("reviews/new.html.erb")
   end
 
   def create
     @review = Review.new
-
+  
     @review.flight_id = params[:flight_id]
     @review.body = params[:body]
 

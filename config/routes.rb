@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   get "/airlines/new", :controller => "airlines", :action => "new"
   post "/create_airline", :controller => "airlines", :action => "create"
 
+
   # READ
   get "/airlines", :controller => "airlines", :action => "index"
   get "/airlines/:id", :controller => "airlines", :action => "show"
@@ -40,10 +41,14 @@ Rails.application.routes.draw do
   get "/flights/new", :controller => "flights", :action => "new"
   post "/create_flight", :controller => "flights", :action => "create"
 
+  get "/flights/:id/new_review", :controller => "flights", :action => "new_review"
+  post "/flights/:id/create_review", :controller => "flights", :action => "create_review"
+
   # READ
   get "/flights", :controller => "flights", :action => "index"
   get "/flights/:id", :controller => "flights", :action => "show"
 
+  get "/flights/:id/reviews", :controller => "flights", :action => "show_reviews"
   # UPDATE
   get "/flights/:id/edit", :controller => "flights", :action => "edit"
   post "/update_flight/:id", :controller => "flights", :action => "update"

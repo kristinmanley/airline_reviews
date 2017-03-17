@@ -1,21 +1,18 @@
 <div class="page-header">
   <h1>
     Routes
-    <a href="/routes/new" class="btn btn-lg btn-success">New Route</a>
   </h1>
-</div><div class="row mb-1">
-  <div class="col-md-12">
-    <%= search_form_for @q, :class => collapse_search_form, :id => "routes_filters" do |f| %>
-      <p class="lead">Narrow results:</p>
+  <h4> Don't see a route you want? <a href="/routes/new" class="btn btn-lg btn-success"> Create a New Route</a> </h4>
+</div>
 
-        <div class="form-group">
+<div class="row mb-1">
+  <div class="col-md-12">
+    <%= search_form_for @q, :id => "routes_filters" do |f| %>
+    <p class="lead">Search Existing Routes:</p>
+
+      <div class="form-group">
     <%= f.label :departure_airport_cont, "Departure airport contains" %>
     <%= f.text_field :departure_airport_cont, :class => "form-control", :placeholder => "Departure airport contains" %>
-  </div>
-
-<div class="form-group">
-    <%= f.label :route_name_cont, "Route name contains" %>
-    <%= f.text_field :route_name_cont, :class => "form-control", :placeholder => "Route name contains" %>
   </div>
 
 <div class="form-group">
@@ -23,58 +20,9 @@
     <%= f.text_field :destination_airport_cont, :class => "form-control", :placeholder => "Destination airport contains" %>
   </div>
 
-<div class="form-group">
-          <%= f.label :created_at, "Created at" %>
-          <div class="row">
-            <div class='col-md-6 mb-1'>
-              <div class='input-group date' id='created_atgteqPicker'>
-                  <%= f.text_field :created_at_gteq, :class => "form-control", :placeholder => "Created at greater than or equal to" %>
-                  <span class="input-group-addon">
-                      <span class="glyphicon glyphicon-calendar"></span>
-                  </span>
-              </div>
-            </div>
-
-            <div class='col-md-6'>
-              <div class='input-group date' id='created_atlteqPicker'>
-                  <%= f.text_field :created_at_lteq, :class => "form-control", :placeholder => "Created at less than or equal to" %>
-                  <span class="input-group-addon">
-                      <span class="glyphicon glyphicon-calendar"></span>
-                  </span>
-              </div>
-            </div>
-          </div>
-      </div>
-      <script type="text/javascript">
-          $(function () {
-              $('#created_atgteqPicker').datetimepicker({
-                  format: 'YYYY-MM-DD hh:mm:SS'
-              });
-              $('#created_atlteqPicker').datetimepicker({
-                  useCurrent: false,
-                  format: 'YYYY-MM-DD hh:mm:SS'
-              });
-              $('#created_atgteqPicker').on("dp.change", function (e) {
-                  $('#created_atlteqPicker').data("DateTimePicker").minDate(e.date);
-              });
-              $('#created_atlteqPicker').on("dp.change", function (e) {
-                  $('#created_atgteqPicker').data("DateTimePicker").maxDate(e.date);
-              });
-          });
-      </script>
-
-        <div class="form-group">
-      <%= f.label :flights_departure_airport_cont, "Flight departure_airport contains" %>
-      <%= f.text_field :flights_departure_airport_cont, :class => "form-control", :placeholder => "Flight departure_airport contains" %>
-    </div>
-
-      <%= f.submit :class => "btn btn-primary btn-block mb-1" %>
-
-      <a href="/routes" class="btn btn-default btn-block mb-1">Clear filters</a>
+    <%= f.submit :class => "btn btn-primary btn-block mb-1" %>
     <% end %>
-    <a class="btn btn-default btn-block mb-1" data-toggle="collapse" href="#routes_filters">
-      Show Filters
-    </a>
+
   </div>
 </div>
 
@@ -85,7 +33,7 @@
         <th>Departure airport</th>
         <th>Destination airport</th>
         <th>Route name</th>
-        <th>Actions</th>
+        <th>Explore Flights</th>
       </tr>
 
       <% @routes.each do |route| %>
@@ -94,9 +42,9 @@
         <td><%= route.destination_airport %></td>
         <td><%= route.route_name %></td>
         <td>
-          <a href="/routes/<%= route.id %>" class="btn btn-primary">Show</a>
-          <a href="/routes/<%= route.id %>/edit" class="btn btn-warning">Edit</a>
+      
           <a href="/delete_route/<%= route.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
+
         </td>
       </tr>
       <% end %>

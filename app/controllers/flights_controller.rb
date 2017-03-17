@@ -1,7 +1,8 @@
 class FlightsController < ApplicationController
   def index
     @q = Flight.ransack(params[:q])
-    @flights = @q.result(:distinct => true).includes(:route, :reviews, :airline).page(params[:page]).per(10)
+    @flights = @q.result(:distinct => true).includes(:route,:reviews, :airline).page(params[:page]).per(10)
+
 
     render("flights/index.html.erb")
   end
@@ -10,23 +11,46 @@ class FlightsController < ApplicationController
     @review = Review.new
     @flight = Flight.find(params[:id])
 
+
     render("flights/show.html.erb")
   end
 
   def new
     @flight = Flight.new
 
+
     render("flights/new.html.erb")
   end
 
+  def new_review
+  end
+
+  def create_review
+    @flight_review = Flight_Review.new
+
+    @flight_review.username = params[:username]
+    @flight_review.review = params[:review]
+    @flight_review.rating = params[:rating]
+
+    save_status = @flight_review.save
+
+    if save_status == true
+      referer = URI(request.referer).path
+
+redirect_to("http://localhost:300/flights/:id/reviews")
+end
+end
+
+
   def create
     @flight = Flight.new
-
     @flight.departure_airport = params[:departure_airport]
     @flight.destination_airport = params[:destination_airport]
     @flight.flight_name = params[:flight_name]
     @flight.airline_id = params[:airline_id]
     @flight.route_id = params[:route_id]
+  
+
 
     save_status = @flight.save
 
